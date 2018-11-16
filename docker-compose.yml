@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: microsoft/mssql-server-linux:2017-latest
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=<YourStrong!Passw0rd>
+      - MSSQL_PID=Developer
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        JAR_FILE: target/example-0.0.1-SNAPSHOT.jar
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    environment:
+      - DB_URL=jdbc:sqlserver://db;

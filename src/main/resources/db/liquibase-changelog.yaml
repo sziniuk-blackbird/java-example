@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: changelogs/001_createProjectTable.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelogs/002_createDocumentTable.yaml
+      relativeToChangelogFile: true
